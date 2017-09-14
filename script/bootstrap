@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo -e "==> Installing Dependencies"
+npm install 
