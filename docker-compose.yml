@@ -1,8 +1,17 @@
-version: '2'
+version: '3'
 services:
-  chat-server:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - "5432:5432"
+  app:
+    container_name: server
     build: .
     ports:
       - "3000:3000"
-    volumes:
-      - .:/usr/src/app
+    links:
+      - postgres

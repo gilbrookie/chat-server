@@ -16,8 +16,10 @@
     "kafka-node": "^2.2.3",
     "less-middleware": "~2.2.0",
     "morgan": "~1.8.1",
+    "pg-promise": "^7.0.3",
     "pug": "~2.0.0-beta11",
     "serve-favicon": "~2.4.2",
+    "uuid": "^3.1.0",
     "verror": "^1.10.0"
   },
   "devDependencies": {
