@@ -1,5 +1,6 @@
 const express = require('express');
 const UserService = require('../lib/UserService');
+const uuidv4 = require('uuid/v4');
 
 const router = express.Router();
 
@@ -18,9 +19,10 @@ router.get('/:userId/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  req.log.info('Creating a new user');
-  return UserService.create(req.body)
-    .then(user => res.send(user));
+  const user = Object.assign({ id: uuidv4() }, req.body);
+  req.log.info({ user }, 'Creating a new user');
+  return UserService.create(user)
+    .then(userRes => res.send(userRes));
 });
 
 router.put('/:userId/', (req, res) => {
