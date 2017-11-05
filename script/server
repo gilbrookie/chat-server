@@ -1,4 +1,8 @@
 #!/bin/bash
 
+
+echo -e "==> Calling boostrap"
+./script/bootstrap
+
 echo -e "==> Starting the Service"
-npm start
+docker-compose up -d
