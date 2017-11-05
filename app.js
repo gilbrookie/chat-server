@@ -6,10 +6,18 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 
+const bunyan = require('bunyan');
+const bunyanMiddleware = require('bunyan-middleware');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+const log = bunyan.createLogger({
+  name: 'chatserver',
+  level: 'info',
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bunyanMiddleware({ logger: log }));
 
 app.use('/', index);
 app.use('/users', users);
