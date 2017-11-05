@@ -33,7 +33,7 @@ router.put('/:userId/', (req, res) => {
 
 router.delete('/:userId/', (req, res) => {
   req.log.info({ id: req.params.userId }, 'Deleteing User');
-  return UserService.delete(req.params.userId)
+  return UserService.destroy(req.params.userId)
     .then(res.send(204));
 });
 
